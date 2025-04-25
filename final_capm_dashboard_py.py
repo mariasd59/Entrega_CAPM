@@ -85,7 +85,17 @@ n_sims = 100
 σ = ret_pf_daily.std()
 drift = μ - 0.5 * σ**2
 Z = np.random.default_rng(42).standard_normal(size=(n_days, n_sims))
-paths = np.exp(drift + σ * Z).cumprod(axis=0)
+steps = np.exp(drift + σ * Z)
+paths = steps.cumprod(axis=0)
+
+# Escalar al valor actual del portafolio
+valor_inicial = prices.iloc[-1] @ w_target
+paths_real = valor_inicial * paths
+
+# Cálculo del VaR al final de la simulación
+valores_finales = paths_real[-1, :]
+var95_gbm = np.percentile(valores_finales, 5)
+var99_gbm = np.percentile(valores_finales, 1)
 
 fig2, ax2 = plt.subplots(figsize=(8,4))
 for i in range(n_sims):
