@@ -99,7 +99,7 @@ var99_gbm = np.percentile(valores_finales, 1)
 
 fig2, ax2 = plt.subplots(figsize=(8,4))
 for i in range(n_sims):
-    ax2.plot(paths[:, i], lw=1, alpha=0.5)
+    ax2.plot(paths_real[:, i], lw=1, alpha=0.5)
 ax2.set_title("Trayectorias GBM del portafolio")
 ax2.set_xlabel("Día")
 ax2.set_ylabel("Factor acumulado")
