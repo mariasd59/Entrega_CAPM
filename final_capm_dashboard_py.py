@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1s1A1jelxEGMcD7r5cdof5wjOnrIEvE-u
 """
 
-pip install streamlit
 
 import yfinance as yf
 import datetime
